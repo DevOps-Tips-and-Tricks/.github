@@ -1,0 +1,77 @@
+name: Propose a war story
+description: Suggest an incident worth writing up. You do not need to write it yet.
+title: "[war story] "
+labels: ["war-story", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Two sentences is enough to start. Do not include employer names,
+        customer names, internal hostnames, or routable IP addresses — here or
+        in the final entry.
+
+  - type: textarea
+    id: symptom
+    attributes:
+      label: What did it look like from the outside?
+      description: The symptom, not the cause.
+      placeholder: Every ingress host timed out, but in-cluster traffic was fine.
+    validations:
+      required: true
+
+  - type: textarea
+    id: wrong-turn
+    attributes:
+      label: What did you think it was, before you knew?
+      description: >
+        This is the part that makes an entry worth reading. If there was no wrong
+        turn, the incident was probably too simple to be interesting.
+    validations:
+      required: true
+
+  - type: input
+    id: root-cause
+    attributes:
+      label: One-line root cause
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Root cause category
+      options:
+        - configuration
+        - capacity
+        - code
+        - dependency
+        - process
+    validations:
+      required: true
+
+  - type: input
+    id: stack
+    attributes:
+      label: Stack
+      description: Comma-separated, lowercase.
+      placeholder: kubernetes, etcd, kubespray
+    validations:
+      required: true
+
+  - type: dropdown
+    id: writing
+    attributes:
+      label: Do you want to write it up yourself?
+      options:
+        - "Yes, assign it to me"
+        - "No, I am just proposing it"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: anonymised
+    attributes:
+      label: Confirm
+      options:
+        - label: This description contains no employer, customer, hostname or routable IP that could identify a real environment.
+          required: true
