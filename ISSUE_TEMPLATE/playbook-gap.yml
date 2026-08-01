@@ -1,0 +1,37 @@
+name: Report a playbook or checklist gap
+description: A branch is missing, a command is wrong, or an item needs better reasoning.
+title: "[gap] "
+labels: ["gap", "needs-triage"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: Which file?
+      placeholder: playbooks/dns-resolution-failure.md
+    validations:
+      required: true
+
+  - type: textarea
+    id: gap
+    attributes:
+      label: What is missing or wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should it say instead?
+      description: A rough draft is fine. Bullet points are fine.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: pr
+    attributes:
+      label: Are you willing to open the PR?
+      options:
+        - "Yes"
+        - "No, flagging it only"
+    validations:
+      required: true
